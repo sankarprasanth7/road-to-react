@@ -21,6 +21,11 @@ const list = [
   },
 ];
 
+const key = 'name';
+const user = {
+[key]: 'Robin',
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +40,8 @@ class App extends Component {
       return (<div key={item.objectID}>
       <span>{item.title}</span>
       <span>{item.url}</span>
-      <span>{item.author}</span></div>);
+      <span>{item.author}</span>
+      <span>{user.name}</span></div>);
     })}
     </div>
     );

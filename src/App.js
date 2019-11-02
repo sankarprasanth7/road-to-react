@@ -22,14 +22,21 @@ const list = [
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: list,
+      };
+    }
   render() {
-    var welcomeMessage = "Welcome to road of react";
     return (
     <div className="App">
-    {list.map(function(item){
-      return <div>{item.title}</div>;
+    {this.state.list.map(item =>{
+      return (<div key={item.objectID}>
+      <span>{item.title}</span>
+      <span>{item.url}</span>
+      <span>{item.author}</span></div>);
     })}
-      <h1> {welcomeMessage}</h1>
     </div>
     );
   }

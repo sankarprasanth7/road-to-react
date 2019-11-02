@@ -21,10 +21,10 @@ const list = [
   },
 ];
 
-const key = 'name';
-const user = {
-[key]: 'Robin',
-};
+// const key = 'name';
+// const user = {
+// [key]: 'Robin',
+// };
 
 class App extends Component {
   constructor(props) {
@@ -32,16 +32,34 @@ class App extends Component {
     this.state = {
       list,
       };
+      this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(id){
+    function isNotId(item){
+      return item.objectID !== id;
     }
+    const updatedList = this.state.list.filter(isNotId);
+    this.setState({ list: updatedList });
+    // const updatedList = this.state.list.filter(item => item.objectID !== id);
+  }
+
   render() {
     return (
     <div className="App">
     {this.state.list.map(item =>{
-      return (<div key={item.objectID}>
-      <span>{item.title}</span>
-      <span>{item.url}</span>
-      <span>{item.author}</span>
-      <span>{user.name}</span></div>);
+      return (
+        <div key={item.objectID}>
+          <span>{item.title}</span>
+          <span>{item.url}</span>
+          <span>{item.num_comments}</span>
+          <span>{item.points}</span>
+          <span>{item.author}</span>
+          <span>
+            <button onClick={() => this.onDismiss(item.objectID) }> Dismiss This</button>
+          </span>
+        </div>
+      );
     })}
     </div>
     );
